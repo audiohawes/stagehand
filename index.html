@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Stagehand</title>
-<meta name="description" content="Stagehand is the show-day app for live-audio engineers and stage techs. Patch, stage boxes, wireless, running order and DJ sets, on Mac, iPad and iPhone. Join the TestFlight beta.">
+<meta name="description" content="Stagehand is the show-day app for live-audio engineers and stage techs. Patch, stage boxes, wireless, running order and DJ sets, on Mac, iPad, iPhone and Windows. Join the beta.">
 <meta property="og:title" content="Stagehand: your show day, in one place">
-<meta property="og:description" content="The show-day app for live-audio engineers and stage techs. Mac, iPad and iPhone. Join the beta.">
+<meta property="og:description" content="The show-day app for live-audio engineers and stage techs. Mac, iPad, iPhone and Windows. Join the beta.">
 <meta property="og:image" content="https://audiohawes.github.io/stagehand/img/open-graph.png">
 <meta property="og:url" content="https://audiohawes.github.io/stagehand/">
 <link rel="canonical" href="https://audiohawes.github.io/stagehand/">
@@ -94,6 +94,8 @@
   .join .steps li::before{content:counter(s);position:absolute;left:0;top:-.05em;width:1.8rem;height:1.8rem;border-radius:50%;
     background:var(--tape);color:var(--deep);font-weight:800;display:grid;place-items:center;font-size:.95rem}
   .small{font-size:.9rem;color:#a9b8af}
+  .join.windows{background:var(--deep);border-top:0}
+  .join.windows p{color:var(--text2)}
 
   footer{padding:2.5rem 0 3rem;color:var(--text3);font-size:.92rem}
   footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
@@ -114,7 +116,7 @@
 <header class="bar">
   <div class="wrap">
     <a class="mark" href="#top"><img src="img/stagehand-icon-1024.png" alt=""><span>Stagehand</span></a>
-    <span class="bar-links"><a href="help/">Help</a><a class="btn" href="#join">Join the beta</a></span>
+    <span class="bar-links"><a href="help/">Help</a><a href="#windows">Windows</a><a class="btn" href="#join">Join the beta</a></span>
   </div>
 </header>
 
@@ -126,9 +128,10 @@
       <p class="lede">The patch, the stage boxes, the wireless, the running order and the DJ rigs. Built by a working audio engineer for live-audio crews and stage techs.</p>
       <div class="cta-row">
         <a class="btn" href="#join">Join the TestFlight beta</a>
+        <a class="btn ghost" href="#windows">Download for Windows</a>
         <a class="btn ghost" href="#features">See what it does</a>
       </div>
-      <p class="platforms">Mac · iPad · iPhone &nbsp;·&nbsp; No account. No server. Your shows stay on your devices.</p>
+      <p class="platforms">Mac · iPad · iPhone · Windows &nbsp;·&nbsp; No account. No server. Your shows stay on your devices.</p>
       <div class="hero-shot"><img src="shots/mac-patch.png" alt="Stagehand on the Mac: an act's patch in the Example Festival" width="2000" height="1250"></div>
     </div>
   </div>
@@ -279,6 +282,23 @@
       </ol>
       <a class="btn" href="mailto:dan@audiohawes.com.au?subject=Stagehand%20beta&amp;body=Hi%20Dan%2C%0A%0AI%27d%20like%20to%20test%20Stagehand.%0A%0AMy%20Apple%20ID%20email%3A%20%0AI%20use%20(Mac%20%2F%20iPad%20%2F%20iPhone)%3A%20%0AWhat%20I%20do%20(FOH%2C%20monitors%2C%20stage%2C%20RF%2C%20production)%3A%20%0A">Email me to join</a>
       <p class="small" style="margin-top:1.2rem">Or write to <a href="mailto:dan@audiohawes.com.au">dan@audiohawes.com.au</a>. Use the email of your Apple ID, so the invite reaches you.</p>
+    </div>
+  </section>
+
+  <section class="join windows" id="windows">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--tape)">Beta</p>
+      <h2>Stagehand for Windows</h2>
+      <p>The same app, page for page, on a Windows 10 or 11 laptop (64-bit). Open and edit shows, and get them from a Mac and send changes back over local Wi-Fi.</p>
+      <ol class="steps">
+        <li>Download the zip with the button below.</li>
+        <li>Right-click it and choose Extract All. Open the Stagehand folder and double-click Stagehand.exe.</li>
+        <li>Windows may say it protected your PC, because the app is not signed yet. Press More info, then Run anyway.</li>
+        <li>Press Install. Stagehand goes in your Start menu and on your desktop. A newer zip updates it the same way.</li>
+      </ol>
+      <a class="btn" href="https://github.com/audiohawes/stagehand/releases/latest/download/Stagehand-Windows.zip">Download for Windows</a>
+      <p class="small" style="margin-top:1.2rem">About 180 MB. It brings its own Java, so there is nothing else to install. <a href="https://github.com/audiohawes/stagehand/releases">What's new, and older versions</a>.</p>
+      <p class="small">Not on Windows yet: PDFs, label printing, console show files and reading riders. Use the Mac for those for now.</p>
     </div>
   </section>
 </main>
