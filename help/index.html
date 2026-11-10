@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stagehand Help</title>
+<meta name="description" content="How to use Stagehand on Mac, iPad and iPhone: productions, patch, stage boxes, schedule, Stage View, wireless, DJ sets, printing and sync.">
+<meta property="og:title" content="Stagehand Help">
+<meta property="og:description" content="How to use Stagehand, the show-day app for live-audio crews and stage techs.">
+<meta property="og:image" content="https://audiohawes.github.io/stagehand/img/open-graph.png">
+<meta property="og:url" content="https://audiohawes.github.io/stagehand/help/">
+<link rel="canonical" href="https://audiohawes.github.io/stagehand/help/">
+<link rel="icon" href="../img/stagehand-icon-1024.png">
+<link rel="apple-touch-icon" href="../img/stagehand-icon-1024.png">
+<style>
+  /* Stagehand brand (docs/brand/HANDOFF.md). Dark is the brand; there is no light theme on purpose. */
+  :root{
+    --deep:#141416; --ground:#1E1E20; --pine:#173A2E; --lid:#1E4838;
+    --tape:#EDE8DC; --edge:#A39C8C; --text:#ECECEE; --text2:#A1A1A6; --text3:#8E8E93;
+    --line:#2C2C30; --ok:#34C759; --warn:#FFB340;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:76px}
+  body{margin:0;background:var(--deep);color:var(--text);
+    font:17px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--tape)}
+  .wrap{max-width:76rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+
+  .bar{position:sticky;top:0;z-index:5;background:rgba(20,20,22,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .bar .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:12px}
+  .mark{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:700;white-space:nowrap}
+  .mark img{width:30px;height:30px;border-radius:7px}
+  .mark small{color:var(--text3);font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:.5em;background:var(--tape);color:var(--deep);font-weight:700;
+    text-decoration:none;border-radius:10px;padding:.5em .9em;line-height:1.2;font-size:.92rem;white-space:nowrap}
+  .btn:hover{background:#fff}
+
+  .layout{display:grid;grid-template-columns:15.5rem 1fr;gap:3rem;align-items:start;padding:2rem 0 4rem}
+  nav.toc{position:sticky;top:80px;max-height:calc(100vh - 100px);overflow:auto;padding-right:.5rem}
+  .search{width:100%;background:var(--ground);border:1px solid var(--line);border-radius:10px;color:var(--text);
+    font:inherit;font-size:.95rem;padding:.6em .8em;margin-bottom:1rem}
+  .search:focus{outline:2px solid var(--lid);border-color:var(--lid)}
+  nav.toc ol{list-style:none;margin:0;padding:0;font-size:.92rem}
+  nav.toc li a{display:block;padding:.3em .6em;border-radius:7px;color:var(--text2);text-decoration:none}
+  nav.toc li a:hover{background:var(--ground);color:var(--text)}
+  nav.toc li a.on{background:var(--pine);color:var(--text)}
+
+  main h1{font-size:clamp(2rem,4.5vw,2.8rem);line-height:1.1;margin:0 0 .6rem;letter-spacing:-.02em}
+  .lede{color:var(--text2);font-size:1.1rem;margin:0 0 1.5rem;max-width:42rem}
+  .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 2.5rem}
+  .quick a{display:block;background:var(--ground);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-decoration:none;color:var(--text)}
+  .quick a:hover{border-color:var(--edge)}
+  .quick b{display:block}
+  .quick span{color:var(--text2);font-size:.9rem}
+
+  section{border-top:1px solid var(--line);padding:2.2rem 0 .6rem}
+  section h2{font-size:1.6rem;line-height:1.2;margin:0 0 .4rem;letter-spacing:-.01em}
+  section h3{font-size:1.1rem;margin:1.6rem 0 .3rem}
+  section p,section li{color:var(--text);max-width:44rem}
+  section ul,section ol{padding-left:1.3rem}
+  section li{margin:.3rem 0}
+  .where{display:flex;gap:6px;flex-wrap:wrap;margin:.2rem 0 1rem}
+  .tag{font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--edge);color:var(--tape);border-radius:999px;padding:.1em .7em}
+  .tag.mac{border-color:var(--lid);background:var(--pine)}
+  .ui{font-weight:650;color:var(--tape);white-space:nowrap}
+  kbd{font:inherit;font-size:.85em;border:1px solid var(--edge);border-bottom-width:2px;border-radius:6px;padding:0 .35em;color:var(--tape)}
+  .note{background:var(--ground);border:1px solid var(--line);border-left:4px solid var(--ok);border-radius:10px;padding:.8rem 1rem;margin:1rem 0;max-width:44rem}
+  .note.warn{border-left-color:var(--warn)}
+  .note p{margin:.2rem 0}
+  table{border-collapse:collapse;margin:1rem 0;font-size:.95rem;max-width:44rem;width:100%}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:.45em .6em;vertical-align:top}
+  th{color:var(--text2);font-weight:600}
+  .none{display:none;color:var(--text2);padding:2rem 0}
+
+  .contact{background:var(--pine);border-radius:14px;padding:1.6rem;margin-top:2.5rem}
+  .contact h2{margin-top:0}
+
+  footer{border-top:1px solid var(--line);color:var(--text3);font-size:.9rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:1.4rem;padding-bottom:2rem}
+  footer a{color:var(--text2)}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr;gap:1rem}
+    nav.toc{position:static;max-height:none;overflow:visible}
+    nav.toc ol{display:none}
+    .quick{grid-template-columns:1fr}
+    table{display:block;overflow-x:auto}
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="../"><img src="../img/stagehand-icon-1024.png" alt=""><span>Stagehand <small>Help</small></span></a>
+    <a class="btn" href="../#join">Join the beta</a>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <nav class="toc" aria-label="Help topics">
+    <input class="search" type="search" id="q" placeholder="Search help (e.g. stage box)" aria-label="Search help">
+    <ol id="toc"></ol>
+  </nav>
+
+  <main>
+    <h1>Stagehand Help</h1>
+    <p class="lede">How to use Stagehand on Mac, iPad and iPhone. Start with the examples: they are full shows you can click through and throw away.</p>
+
+    <div class="quick">
+      <a href="#start"><b>New here?</b><span>Set up, then open an example.</span></a>
+      <a href="#sync"><b>iPad and iPhone</b><span>Get a show from your Mac.</span></a>
+      <a href="#contact"><b>Stuck?</b><span>Email Dan. Real people answer.</span></a>
+    </div>
+
+    <p class="none" id="none">Nothing matches. Try another word, or <a href="#contact">ask Dan</a>.</p>
+
+    <!-- ============================================================ -->
+    <section id="start" data-title="Getting started">
+      <h2>Getting started</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <h3>1. Install the beta</h3>
+      <p>Stagehand is in beta on Apple TestFlight. <a href="../#join">Ask to join</a>, then open the invite on each device and install Stagehand from the TestFlight app.</p>
+      <h3>2. Choose where your shows live (Mac)</h3>
+      <p>The first time you open Stagehand on a Mac, it asks <i>"Where should Stagehand keep your shows?"</i></p>
+      <ul>
+        <li><span class="ui">Use This Mac</span> makes a <b>Stagehand Library</b> folder in your Documents folder.</li>
+        <li><span class="ui">Choose Folder…</span> puts the Library on a drive or another folder. Choose an existing Library to open it.</li>
+      </ul>
+      <p>Each show (a <b>production</b>) is saved in the Library as one <code>.stagehand</code> file. Stagehand keeps a copy every time you save, so you can go back.</p>
+      <h3>3. Open an example</h3>
+      <p>The examples are the fastest way to learn. Each one is a complete show that is saved in your Library. Look around, change things, then throw it away.</p>
+      <table>
+        <tr><th>Example</th><th>What is in it</th></tr>
+        <tr><td><b>Tour Date — one band</b></td><td>One band on tour: patch, stage boxes, outputs, in-ears, wireless, backline and a schedule.</td></tr>
+        <tr><td><b>Festival — bands only</b></td><td>Two stages of bands, up to 56 channels, with a full running order.</td></tr>
+        <tr><td><b>DJ Night — DJs only</b></td><td>One club room. Six DJs roll between Rig A and Rig B, with a B2B, a vinyl set, a laptop set and a hybrid live set.</td></tr>
+        <tr><td><b>Festival — bands and DJs</b></td><td>Bands and DJs on one stage, a DJ tent with A and B rigs, and a rig that travels between stages.</td></tr>
+      </table>
+      <ul>
+        <li><b>Mac:</b> go to <span class="ui">Productions</span> and click <span class="ui">Examples</span>. The <span class="ui">Help</span> menu has them too.</li>
+        <li><b>iPad and iPhone:</b> on the home screen, tap <span class="ui">Open an Example</span>.</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="around" data-title="Getting around">
+      <h2>Getting around</h2>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <ul>
+        <li>Everything is in the <b>sidebar</b> on the left. To change its order, use <span class="ui">View › Customize Sidebar…</span></li>
+        <li>To see the welcome screen again, use <span class="ui">Help › Welcome to Stagehand</span>.</li>
+        <li>Press <kbd>⌘</kbd><kbd>Z</kbd> to undo a change.</li>
+      </ul>
+      <h3 id="find">Find Anything (⌘K)</h3>
+      <p>Press <kbd>⌘</kbd><kbd>K</kbd>, or click <span class="ui">Find</span> in a production. Type a few words to jump to:</p>
+      <ul>
+        <li>any page, production, stage, show day or act</li>
+        <li>a patch line (type <b>ch 12</b> to find channel 12), an output, an IEM or a backline item</li>
+        <li>an action: <span class="ui">Add Act</span>, <span class="ui">Add DJ</span>, the PDF exports and the examples</li>
+      </ul>
+      <p>Every word you type must be in the result, so fewer words find more.</p>
+      <h3 id="settings">Settings</h3>
+      <p>On the Mac, open <span class="ui">Stagehand › Settings</span> (<kbd>⌘</kbd><kbd>,</kbd>).</p>
+      <ul>
+        <li><b>General:</b> Dark or Light look, and <b>Spacing</b>. <i>Compact</i> fits more on each screen. Printed sheets and Stage View stay the same.</li>
+        <li><b>Library:</b> change or show your Library, and choose what Stagehand offers when you plug in a USB stick or a drive.</li>
+        <li><b>Productions:</b> how things look for you, for example box colours on the patch. These do not change the files you share.</li>
+        <li><b>Labels &amp; Printing:</b> your label printer and label style.</li>
+        <li><b>Documents &amp; AI:</b> your house style for PDFs (logo, paper, colour), and how documents are read.</li>
+        <li><b>iPhone &amp; iPad:</b> pairing and sync. See <a href="#sync">iPad and iPhone</a>.</li>
+      </ul>
+      <p>On iPad and iPhone, the settings (look, spacing, ruler size) are in the iOS <b>Settings</b> app, under Stagehand.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="productions" data-title="Productions">
+      <h2>Productions: tours and events</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>A production is one tour or one event. It holds each act's patch, stage boxes, outputs and plot, and the schedule for every show day.</p>
+      <ul>
+        <li><b>Tour:</b> one band, many nights. Each city can change the band's patch just for that night.</li>
+        <li><b>Event:</b> a festival or a one-off show. It has stages, and many acts on each stage.</li>
+      </ul>
+      <h3>Make a new one</h3>
+      <p>Go to <span class="ui">Productions</span>, click <span class="ui">New Tour</span> or <span class="ui">New Event</span>, type a name, and click <span class="ui">Create</span>. On iPad and iPhone, the same buttons are on the home screen.</p>
+      <h3>Bring in your spreadsheets</h3>
+      <div class="where"><span class="tag mac">Mac only</span></div>
+      <p>Click <span class="ui">Import Spreadsheets</span> and choose one or more <b>.xlsx</b> files. Stagehand knows these layouts:</p>
+      <ul>
+        <li>a single-artist patch sheet with tabs such as <i>INFORMATION</i>, <i>INPUT PATCH</i>, <i>STAGE BOXES</i>, <i>FOH OUTPUTS</i> and <i>MON OUTPUTS</i></li>
+        <li>a schedule sheet with <i>Inputs</i> and <i>Running Order</i> tabs</li>
+        <li>a festival patch sheet with a <i>Festival Input Patch</i> tab</li>
+      </ul>
+      <p>Other layouts are refused with a message. Imports always come in as a tour.</p>
+      <h3 id="revisions">Revisions</h3>
+      <p>A new production says <b>Rev 0 · Draft</b>. When you send paperwork out, click <span class="ui">Issue Revision…</span> and add a short note about what changed. Every sheet then shows the revision, for example <b>Rev 5 · K7Q</b>. The three letters are different for each issue, so two copies of "Rev 5" can be told apart on paper.</p>
+      <p>If you change something after you issue a revision, Stagehand shows <i>"+ changes since this issue"</i>. Click the revision label to see the history.</p>
+      <h3>Delete a production</h3>
+      <p>On the Mac, right-click its card and choose <span class="ui">Show in Finder</span>. Then move the <code>.stagehand</code> file to the Trash.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="acts" data-title="Acts">
+      <h2>Acts</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>An act is a band or a DJ. Each act has its own pages:</p>
+      <p><b>DJ Setup</b> (DJs only) · <b>Patch</b> · <b>Stage Boxes</b> · <b>Stage Plot</b> · <b>Outputs</b> · <b>IEMs</b> · <b>RF</b> · <b>Backline</b> · <b>Info</b></p>
+      <h3>Add an act</h3>
+      <ul>
+        <li><b>Mac:</b> click <span class="ui">Add act</span> in the sidebar. To put it straight on a stage, open the stage's <span class="ui">Overview</span> and click <span class="ui">Add Act</span>.</li>
+        <li><b>Mac, a DJ:</b> press <kbd>⌘</kbd><kbd>K</kbd> and choose <span class="ui">Add DJ</span>. Or turn on <span class="ui">This act is a DJ</span> on an act's Info page.</li>
+        <li><b>iPad:</b> tap <span class="ui">Add Act</span> in the left column.</li>
+      </ul>
+      <h3>Rename, copy or remove</h3>
+      <p>Right-click an act in the sidebar for <span class="ui">Rename…</span>, <span class="ui">Duplicate</span>, <span class="ui">On the Bill</span> and <span class="ui">Remove…</span>. Removing an act also removes its patch, outputs, plot, IEMs, RF and backline, and clears its place in the running order.</p>
+      <h3>Tour nights</h3>
+      <p>On a tour, each city is listed in the sidebar. A city's pages start as the band's standard setup. To change it only for that night, right-click a patch line and choose <span class="ui">Change Just for…</span> or <span class="ui">Drop for…</span>. <span class="ui">Reset … to the Band's</span> undoes this.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="patch" data-title="Patch (input list)">
+      <h2>Patch (input list)</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>The patch is the act's input list. Each line is one channel.</p>
+      <table>
+        <tr><th>Column</th><th>What it means</th></tr>
+        <tr><td>Ch</td><td>The channel number.</td></tr>
+        <tr><td>Box</td><td>Where it plugs in, for example <b>R3</b> = Red box, input 3. Lines with no box are home runs (HR1, HR2…).</td></tr>
+        <tr><td>Split</td><td>The festival split input. Shown only when the act is on a stage.</td></tr>
+        <tr><td>Name, Mic / DI, 48V, Stand, Notes</td><td>What it is, what picks it up, and what it needs.</td></tr>
+        <tr><td>Stereo</td><td>Paired with the next channel.</td></tr>
+        <tr><td>Own</td><td>The artist brings it.</td></tr>
+      </table>
+      <h3>Useful buttons (Mac)</h3>
+      <ul>
+        <li><span class="ui">Add Input</span> and <span class="ui">Remove</span>.</li>
+        <li><span class="ui">Renumber</span> numbers the channels 1, 2, 3… in the order they are listed.</li>
+        <li><span class="ui">From the Boxes</span> lays out the patch from the act's stage boxes.</li>
+        <li><span class="ui">Suggest…</span> gives a starting input list. Check it with the band.</li>
+        <li><span class="ui">Place on Split</span> puts the act on the festival split.</li>
+      </ul>
+      <p>Tick several lines to change their box, mic, stand, colour or 48V in one go. Shift-click ticks a run of lines. Drag lines to reorder them.</p>
+      <div class="note warn"><p><b>Warnings.</b> If a box input is used twice, a box does not exist, or a line runs past the end of a box, Stagehand shows <i>"N lines to check"</i>. Point at it to see why.</p></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="boxes" data-title="Stage boxes">
+      <h2>Stage boxes</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>Each stage box has a colour, a letter, a number of inputs and returns. Stagehand draws it to scale and shows which inputs are used.</p>
+      <ul>
+        <li>Use <span class="ui">+</span> to add a box. Pick a <span class="ui">Box type</span>, or choose <span class="ui">Custom</span> to set the inputs, rows and returns.</li>
+        <li>If you change a box's colour, the patch follows. For example, R1 becomes Y1.</li>
+        <li><span class="ui">Save This Box as a Type…</span> keeps your own box for next time.</li>
+      </ul>
+      <h3>Where it lands</h3>
+      <p>Tell Stagehand how the box reaches the consoles: <span class="ui">Split to two racks</span> (FOH and MON each have a rack), <span class="ui">Shared rack</span>, or turn on <span class="ui">FOH mixes monitors too</span> for one console. Console show files use this.</p>
+      <h3>Labels</h3>
+      <p>The <b>Label (Brother P-touch)</b> card prints a label that lines up with the XLRs on the box. See <a href="#printing">Printing and labels</a>.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="outputs" data-title="Outputs, IEMs, backline, counts">
+      <h2>Outputs, IEMs, backline and counts</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <h3>Outputs</h3>
+      <p>The FOH outputs and MON outputs are separate lists: wedges, IEMs, fills, subs, mains, records and more. <span class="ui">Quick Add</span> adds common sets, and <span class="ui">From the Rig</span> copies the stage's own outputs.</p>
+      <h3>IEMs</h3>
+      <p>One line per pack: name on the pack, mix, who wears it, system, band and frequency. <span class="ui">Add from MON Outputs</span> makes packs from your IEM mixes. Right-click a pack to add a spare. The <b>Labels</b> panel prints pack labels.</p>
+      <h3>Backline</h3>
+      <p>List what each act needs, who brings it (Artist, Hire, House or Shared) and its status. <span class="ui">Hire List</span> collects everything to hire. <span class="ui">Request…</span> makes an email draft for your supplier. You check it and send it yourself.</p>
+      <h3>Counts</h3>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <p>The <span class="ui">Counts</span> page totals mics, DIs, stands, wireless and cables across the show, with spares. It shows what is short, and <span class="ui">PDF…</span> exports the list.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="plot" data-title="Stage plot">
+      <h2>Stage plot</h2>
+      <div class="where"><span class="tag mac">Mac: full editor</span><span class="tag">iPad: rough layout</span><span class="tag">iPhone: view</span></div>
+      <p>The plot is drawn on a 1 m grid, with the audience at the bottom. The stage's width and depth come from the stage's <span class="ui">Overview</span>.</p>
+      <ul>
+        <li>Drag items from <b>Add</b> (musicians, mics, amps, wedges, DJ booth…) and <b>Risers</b>.</li>
+        <li>Drag to move. Drag the round handle to turn. Hold Option to turn by single degrees.</li>
+        <li><span class="ui">Add from Patch</span> puts the act's mics and DIs on the plot.</li>
+        <li><span class="ui">Templates</span> saves and reuses plots.</li>
+        <li><span class="ui">Trace a Plot…</span> puts the band's own plot picture underneath, so you can copy it. <span class="ui">Read the Plot</span> places the icons for you. Check the highlighted ones.</li>
+      </ul>
+      <p>Shortcuts: <kbd>⌘</kbd><kbd>D</kbd> duplicate, <kbd>⌘</kbd><kbd>⌫</kbd> delete, <kbd>⌘</kbd><kbd>[</kbd> / <kbd>⌘</kbd><kbd>]</kbd> turn 15°.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="stages" data-title="Festival stages and splits">
+      <h2>Festival stages and splits</h2>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <p>In an event, each stage in the sidebar has pages for the whole stage:</p>
+      <ul>
+        <li><b>Whole Patch, Whole Outputs, Whole IEMs, Whole Backline, Whole Plots, Whole Boxes:</b> every act on the stage, side by side.</li>
+        <li><b>House Patch and House Boxes:</b> the festival's own lines, such as MC mics and ambient mics, and its own boxes.</li>
+        <li><b>Split Panels:</b> the number of panels, channels per panel, and a 2-way or 3-way split. The panel view marks what needs re-plugging between acts.</li>
+        <li><b>Split Matrix:</b> a read-only table of what is on each split input, for each act.</li>
+      </ul>
+      <p>To add a stage, go to <span class="ui">Stages</span> and click <span class="ui">Add a Stage</span>. <span class="ui">Make a Running Order</span> makes a show day for that stage.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="schedule" data-title="Schedule and show days">
+      <h2>Schedule and show days</h2>
+      <div class="where"><span class="tag mac">Mac: edit</span><span class="tag">iPad and iPhone: view and run late</span></div>
+      <p>Each show day has a running order. Set the <span class="ui">Advertised start</span> and the <span class="ui">Curfew</span>, add acts and changeovers, and Stagehand works out the times.</p>
+      <h3>The tabs</h3>
+      <ul>
+        <li><b>Running Order:</b> the list of lines: doors, sets, changeovers, crew calls, curfew.</li>
+        <li><b>Timeline:</b> the day as blocks. Drag a block to fix its time.</li>
+        <li><b>All Days:</b> every show day in one table.</li>
+        <li><b>Calls by Person:</b> put names in the <i>Who</i> column, and each person's calls show here, ready to text or email.</li>
+      </ul>
+      <h3>How the times work</h3>
+      <ul>
+        <li>Sets fit backwards from the curfew, inside each act's minimum and maximum set length.</li>
+        <li>A <b>grey</b> time is automatic. Type a time to fix it. Clear it to go back to automatic.</li>
+        <li>A warning shows if a set is too short or too long, or the show runs past curfew.</li>
+      </ul>
+      <h3>Add a day</h3>
+      <p>Use the <span class="ui">Day</span> menu: add a copy of this day, start from a template, save a template, or copy this day to other days.</p>
+      <h3>Running late</h3>
+      <p>On the Mac, use <span class="ui">Push show late</span> (+1, +5, +10) in the Stage View Operator. On iPad and iPhone, use the Schedule's <span class="ui">Running Late</span> menu. The act on now gets longer, and everything after it moves later. <b>The curfew does not move</b>, so watch for the past-curfew warning.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="stageview" data-title="Stage View">
+      <h2>Stage View</h2>
+      <div class="where"><span class="tag mac">Mac runs it</span><span class="tag">iPad and iPhone show it</span><span class="tag">Any browser</span></div>
+      <p>Stage View puts a big clock, now and next, and time left on any screen side of stage. You run it from the Mac at front of house.</p>
+      <h3>Open it</h3>
+      <p>On the Schedule page, click <span class="ui">Stage View</span>. Two windows open: <b>Stage View</b> (the screen) and the <b>Stage View Operator</b> (your controls).</p>
+      <h3>Send a message</h3>
+      <ol>
+        <li>Click a one-tap button, for example <i>5 minutes</i> or <i>Wrap it up</i>, or type your own.</li>
+        <li>Choose how it shows: <b>Banner</b>, <b>Full Screen</b> or <b>Flashing</b>, and Normal or Urgent.</li>
+        <li>Choose which screens get it, then <span class="ui">Send Now</span> (<kbd>⌘</kbd><kbd>↩</kbd>).</li>
+      </ol>
+      <p><span class="ui">Edit Buttons…</span> changes the one-tap messages.</p>
+      <h3>Timer and lateness</h3>
+      <p><span class="ui">Set Timer</span> runs your own countdown. <span class="ui">Back to Schedule</span> goes back to the running order. <span class="ui">Push show late</span> moves the show later.</p>
+      <div class="note warn"><p><b>STOP THE SHOW</b> goes to every screen and beats everything else, even while the operator is locked. Click <span class="ui">END STOP</span> to clear it.</p></div>
+      <h3>Screens</h3>
+      <ul>
+        <li><b>Main Screen</b> is the Stage View window. Put it on a second monitor or a TV.</li>
+        <li><span class="ui">New Window</span> adds another screen with its own look.</li>
+        <li>Each screen can have a <b>Layout</b> (Stage, Dressing Room, FOH, Monitor World), a text size, and the parts you want: clock, current act, next act, curfew, set list and more.</li>
+        <li><span class="ui">Free Layout</span> lets you drag the parts where you want them. You can save layouts.</li>
+      </ul>
+      <h3>On an iPad or iPhone</h3>
+      <p>Pair the device with the Mac first (see <a href="#sync">iPad and iPhone</a>). Then tap <span class="ui">Stage Screen</span> on its home screen. The Mac must have Stage View open. To leave, double-tap the screen and tap <span class="ui">Exit</span>.</p>
+      <h3>In any browser</h3>
+      <p>In the Stage View window, click <span class="ui">Share…</span> › <span class="ui">Share on This Wi-Fi</span>. Scan the QR code, or open the address on any phone, tablet or laptop on the same Wi-Fi. <i>For the band</i> shows only doors, sets and curfew. The link stops after 12 hours, or when you close Stage View.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="rf" data-title="Wireless (RF)">
+      <h2>Wireless (RF)</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>Each act has an <b>RF</b> page, and the <b>Wireless</b> page shows every channel on the site. The RF page has four tabs: <b>Coordinate</b>, <b>Devices</b>, <b>Monitor</b> and <b>Scans and TV</b>.</p>
+      <h3>Coordinate</h3>
+      <ol>
+        <li>Choose the <b>Country</b>. Stagehand keeps frequencies inside that country's legal ranges. A show day can use a different country (Schedule › Day details).</li>
+        <li>Add channels with <span class="ui">Add Channel</span>, or <span class="ui">Add From</span> the patch's wireless lines or the IEM mixes.</li>
+        <li>Click <span class="ui">Coordinate…</span>. Choose <b>Robust</b>, <b>Standard</b> or <b>More Frequencies</b>, then <span class="ui">Use These</span>.</li>
+        <li>Lock the channels you want to keep. <span class="ui">Recalculate…</span> redoes only the unlocked ones.</li>
+      </ol>
+      <div class="note"><p>These are quick checks. For a big or busy show, coordinate properly in SoundBase, Wireless Workbench or WSM. <span class="ui">Export…</span> sends your list to them, and <span class="ui">Bring Back Frequencies…</span> brings the result back (Mac).</p></div>
+      <h3>Scans</h3>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <p>Add a scan from RF Explorer, Wireless Workbench or Sennheiser WSM (CSV, TXT or TSV). Or connect an RF Explorer or tinySA over USB for a live spectrum. Tick TV channels and add exclusions for ranges you must not use. An iPad can show a paired Mac's live scanner.</p>
+      <h3>Send to receivers</h3>
+      <p><span class="ui">Send to Devices…</span> links each channel to a real receiver and sends the new frequencies to it. A mic or pack on the old frequency loses its link until you change it too.</p>
+      <h3 id="rfnetwork">RF Network</h3>
+      <p>The <span class="ui">RF Network</span> page shows every receiver on your network, for any show. Sennheiser EW-DX, EW-D and Digital 6000 are found by themselves. Add Shure digital, UHF-R and Sennheiser G3/G4 with <span class="ui">Add by IP</span>. You can rename, retune, mute and change power, and <span class="ui">Coordinate</span> can check for clashes.</p>
+      <div class="note warn"><p><b>Nothing shows?</b> Allow <b>Local Network</b> for Stagehand in your device's settings, and be on the same network as the receivers.</p></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="dj" data-title="DJ sets">
+      <h2>DJ sets</h2>
+      <div class="where"><span class="tag">Mac</span><span class="tag">iPad</span><span class="tag">iPhone</span></div>
+      <p>A DJ act has a <b>DJ Setup</b> page. Open the <b>DJ Night</b> example to see one.</p>
+      <h3>Set up a DJ</h3>
+      <ol>
+        <li>Add the DJ (Mac: <kbd>⌘</kbd><kbd>K</kbd> › <span class="ui">Add DJ</span>).</li>
+        <li>Choose a preset: <b>4 Players and Mixer</b>, <b>2 Players and Mixer</b>, <b>2 Turntables and Mixer</b>, <b>Laptop and Controller</b> or <b>Hybrid Live</b>. The <b>Booth Layout</b> draws the gear from above.</li>
+        <li>Change the <b>DJ Gear</b> list if you need to. The gear also goes on the Backline page and the hire list.</li>
+        <li>Choose the monitoring: Booth Monitors, IEMs, Booth and IEMs, or Headphones Only. The Outputs and IEMs pages update for you.</li>
+      </ol>
+      <p><b>Back-to-back (B2B):</b> click <span class="ui">Add DJ</span> on the DJ Setup page to add a row for each DJ in the set.</p>
+      <h3>A and B rigs</h3>
+      <p>Under <b>Rigs On This Stage</b>, click <span class="ui">Add Rig</span> to make Rig A, Rig B and so on. With two rigs, the next DJ sets up while the last one plays. With <b>Plays On</b> set to <i>Auto Roll</i>, each DJ takes the next rig in the running order. Stagehand tells you if a rig is missing gear the DJ needs.</p>
+      <p>A rig can travel to other stages (<span class="ui">Moves To</span>). Stagehand warns you if it is needed in two places at once.</p>
+      <h3>Where DJs show up</h3>
+      <ul>
+        <li>The running order and changeover notes say which rig to roll to.</li>
+        <li>Stage View can show a <b>Next DJ Rig</b> tile on crew screens.</li>
+        <li>The stage plot gets a DJ booth.</li>
+        <li><span class="ui">Export DJ Sheet…</span> makes a PDF of the setup (Mac).</li>
+      </ul>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="riders" data-title="Reading riders and documents">
+      <h2>Reading riders and documents</h2>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <p>In a production, click <span class="ui">Read a Document…</span> and choose a file: PDF (scanned is fine), Word, text, a picture, or a spreadsheet.</p>
+      <ol>
+        <li>Stagehand works out what it is (rider, stage plot, schedule or hire quote) and which act it is for. Change these if they are wrong.</li>
+        <li>For a rider, click <span class="ui">Read It</span>. It reads with Stagehand's built-in reader on your Mac. If you turn it on in Settings, it can also use Claude with your own Anthropic account.</li>
+        <li><b>Check what it found.</b> You can edit the inputs and backline before they are used. For an existing act, choose to update only what changed, replace the patch, or add after it.</li>
+        <li>Click <span class="ui">Use These</span>. The rider file is kept with the production.</li>
+      </ol>
+      <p>A stage plot picture goes under the act's plot, so you can trace it.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="printing" data-title="Sharing, PDFs and printing">
+      <h2>Sharing, PDFs and printing</h2>
+      <h3>PDFs and exports (Mac)</h3>
+      <p>In a production, open <span class="ui">Share &amp; Show Files</span>. You can export everything as one PDF, or just the patch, stage plot, backline, schedule or day sheets. <span class="ui">Export This Day's Packs…</span> puts every band on the day in one PDF. You can also export a spreadsheet, add the schedule to your calendar, and make FOH and MON console show files.</p>
+      <p><span class="ui">House Style…</span> adds your logo, paper size and colour to every PDF.</p>
+      <h3>Advance packs (iPad and iPhone)</h3>
+      <p>Open an act and tap <span class="ui">Share</span>:</p>
+      <ul>
+        <li><b>Advance pack:</b> a PDF of every sheet, or only the sheets you choose.</li>
+        <li><b>Share as web page:</b> one file the venue opens in any browser, with no login and no app. You choose which contacts are on it. Anyone who gets the file can see those contacts and can send it on. To update it, send a new file.</li>
+      </ul>
+      <h3>Label printers</h3>
+      <table>
+        <tr><th>Device</th><th>Printers</th></tr>
+        <tr><td>Mac</td><td>Brother P-touch over USB (found by itself), or a Brother P-touch, Brother QL or DYMO LabelWriter set up in macOS. Choose it in Settings › Labels &amp; Printing.</td></tr>
+        <tr><td>iPad</td><td>Brother P-touch over Bluetooth. Pair it once in iPad Settings › Bluetooth.</td></tr>
+      </table>
+      <p>What you can print:</p>
+      <ul>
+        <li><b>Stage box labels</b> that line up with the XLRs (Stage Boxes page). <span class="ui">Reprint Changed</span> prints only the labels that changed.</li>
+        <li><b>IEM pack labels</b> (IEMs page, Labels panel).</li>
+        <li><b>Console labels:</b> a strip of fader names as one tape (<span class="ui">Console Labels</span>). On iPad it can fill from the patch.</li>
+      </ul>
+      <p>No label printer? Use <span class="ui">Save as PDF…</span> and print from Brother P-touch Editor.</p>
+      <div class="note warn"><p>If you plug in a printer after Stagehand is open, quit and reopen Stagehand so it finds the printer.</p></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="sync" data-title="iPad and iPhone">
+      <h2>iPad and iPhone</h2>
+      <p>Build the show on the Mac. Then carry it on the iPad and iPhone at the gig. Sync uses your local Wi-Fi. There is no account, no cloud and no internet needed, and the sync is encrypted.</p>
+      <h3>Pair once</h3>
+      <ol>
+        <li>On the Mac: <span class="ui">Settings › iPhone &amp; iPad</span>, turn on <span class="ui">Share on this Wi-Fi</span>. A QR code shows.</li>
+        <li>On the iPad or iPhone: tap <span class="ui">Get from a Mac</span>, choose your Mac, and scan the code.</li>
+        <li>Choose a production to get.</li>
+      </ol>
+      <p>Both devices must be on the same Wi-Fi. If you click <span class="ui">New Code</span> on the Mac, every device must scan again.</p>
+      <h3>Send changes back</h3>
+      <p>Tap <span class="ui">Sync with …</span> in the production, or pull down on the home list to sync everything. These changes go back to the Mac: <b>patch edits, schedule times and the stage plot</b>. Other changes made on the phone stay on the phone.</p>
+      <div class="note warn"><p>Attachments (rider files, plot pictures, PDFs) are not sent to the iPad or iPhone.</p></div>
+      <h3>What works where</h3>
+      <table>
+        <tr><th></th><th>Mac</th><th>iPad</th><th>iPhone</th></tr>
+        <tr><td>Patch, stage boxes, outputs, IEMs, backline</td><td>Edit</td><td>Edit</td><td>Edit (simpler)</td></tr>
+        <tr><td>Stage plot</td><td>Full editor</td><td>Rough layout</td><td>View</td></tr>
+        <tr><td>Schedule</td><td>Edit</td><td>View, run late</td><td>View, run late</td></tr>
+        <tr><td>Stage View</td><td>Runs it</td><td>Shows it</td><td>Shows it</td></tr>
+        <tr><td>Wireless coordination</td><td>Full</td><td>Most parts</td><td>Most parts</td></tr>
+        <tr><td>Label printing</td><td>USB and macOS printers</td><td>P-touch over Bluetooth</td><td>PDF</td></tr>
+        <tr><td>Read riders, import spreadsheets, show files</td><td>Yes</td><td>No</td><td>No</td></tr>
+      </table>
+      <p>You can also open a <code>.stagehand</code> file from iCloud Drive or AirDrop with <span class="ui">Open from Files</span>.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="showfiles" data-title="USB sticks and console show files">
+      <h2>USB sticks and console show files</h2>
+      <div class="where"><span class="tag mac">Mac</span></div>
+      <h3>USB Check</h3>
+      <p>Is a stick safe to plug into the desk? Choose the stick and the desk, then click <span class="ui">Check Stick</span>. The answer is <b>Good</b>, <b>Check first</b> or <b>Don't plug in</b>. <span class="ui">Export Report…</span> saves the result, and <span class="ui">Make a Clean Copy…</span> makes a clean copy of the stick.</p>
+      <div class="note warn"><p>USB Check needs <b>Full Disk Access</b>. Turn it on in System Settings › Privacy &amp; Security › Full Disk Access.</p></div>
+      <h3>Show Files</h3>
+      <p>Finds show files from Allen &amp; Heath, grandMA, DiGiCo, Yamaha and Avid S6L on a stick or in a folder. <span class="ui">Bring In</span> files them by act, console and date in your Library, and every version is kept. <span class="ui">Put on USB…</span> writes one back.</p>
+      <h3>Convert Show (beta)</h3>
+      <p>Turns a show file from one console into another, for example SQ to dLive. Your original is never changed.</p>
+      <div class="note warn"><p>A converted file can be wrong. Always open the result in the console's own software and check it before the show.</p></div>
+      <h3>Tour Backup</h3>
+      <p>Copies show recordings from a tour drive into your Library, and checks every copy.</p>
+    </section>
+
+    <!-- ============================================================ -->
+    <section id="faq" data-title="Common questions">
+      <h2>Common questions</h2>
+      <h3>Where is my data?</h3>
+      <p>On your own devices. Stagehand has no account and no server. See the <a href="https://audiohawes.github.io/stagehand-privacy/">Privacy Policy</a>.</p>
+      <h3>My iPad cannot find my Mac.</h3>
+      <ul>
+        <li>Check both are on the same Wi-Fi, and that <span class="ui">Share on this Wi-Fi</span> is on in the Mac's Settings.</li>
+        <li>Allow <b>Local Network</b> for Stagehand on the iPad (iPad Settings › Privacy &amp; Security › Local Network).</li>
+        <li>Some venue and hotel Wi-Fi blocks devices from seeing each other. Try a phone hotspot or your own router.</li>
+      </ul>
+      <h3>I changed something on my iPhone, but the Mac does not have it.</h3>
+      <p>Only patch edits, schedule times and the stage plot go back to the Mac. Make other changes on the Mac.</p>
+      <h3>The past-curfew warning showed after I pushed the show late.</h3>
+      <p>That is correct. Pushing late keeps the curfew where it is. Shorten a set or a changeover to fit.</p>
+      <h3>How do I undo?</h3>
+      <p>Press <kbd>⌘</kbd><kbd>Z</kbd> on the Mac. Stagehand also keeps a copy of the production every time it saves.</p>
+      <h3>How do I give feedback or report a bug?</h3>
+      <p>In the TestFlight app, choose Stagehand and send feedback with a screenshot. Or <a href="#contact">email Dan</a>.</p>
+    </section>
+
+    <section id="contact" data-title="Get help" class="contact">
+      <h2>Still stuck?</h2>
+      <p>Email <a href="mailto:dan@audiohawes.com.au?subject=Stagehand%20help">dan@audiohawes.com.au</a>. Say which device you use (Mac, iPad or iPhone), what you tried, and add a screenshot if you can.</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Stagehand · made by Dan Hawes, AudioHawes</span>
+    <span><a href="../">Stagehand</a> · <a href="https://audiohawes.github.io/stagehand-privacy/">Privacy</a> · <a href="https://audiohawes.github.io/stagehand-privacy/support.html">Support</a></span>
+  </div>
+</footer>
+
+<script>
+  // Builds the topic list from the sections, highlights the one on screen, and filters by the search box.
+  const sections = [...document.querySelectorAll('main section[data-title]')];
+  const toc = document.getElementById('toc');
+  for (const s of sections) {
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="#${s.id}">${s.dataset.title}</a>`;
+    toc.appendChild(li);
+  }
+  const links = [...toc.querySelectorAll('a')];
+  const spy = new IntersectionObserver(es => {
+    for (const e of es) if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+    }
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  sections.forEach(s => spy.observe(s));
+
+  const q = document.getElementById('q'), none = document.getElementById('none');
+  q.addEventListener('input', () => {
+    const words = q.value.toLowerCase().split(/\s+/).filter(Boolean);
+    let shown = 0;
+    sections.forEach((s, i) => {
+      const hit = s.id === 'contact' || words.every(w => s.textContent.toLowerCase().includes(w));
+      s.style.display = hit ? '' : 'none';
+      links[i].parentElement.style.display = hit ? '' : 'none';
+      if (hit && s.id !== 'contact') shown++;
+    });
+    none.style.display = shown ? 'none' : 'block';
+  });
+</script>
+</body>
+</html>
