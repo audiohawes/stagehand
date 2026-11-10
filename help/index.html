@@ -200,7 +200,7 @@
       <p>A new production says <b>Rev 0 · Draft</b>. When you send paperwork out, click <span class="ui">Issue Revision…</span> and add a short note about what changed. Every sheet then shows the revision, for example <b>Rev 5 · K7Q</b>. The three letters are different for each issue, so two copies of "Rev 5" can be told apart on paper.</p>
       <p>If you change something after you issue a revision, Stagehand shows <i>"+ changes since this issue"</i>. Click the revision label to see the history.</p>
       <h3>Delete a production</h3>
-      <p>On the Mac, right-click its card and choose <span class="ui">Show in Finder</span>. Then move the <code>.stagehand</code> file to the Trash.</p>
+      <p>On the Mac, right-click its card on the Productions page and choose <span class="ui">Move to Trash…</span>. It goes to the Finder's Trash with its riders and saved versions, so you can put it back until you empty the Trash.</p>
     </section>
 
     <!-- ============================================================ -->
@@ -212,7 +212,7 @@
       <h3>Add an act</h3>
       <ul>
         <li><b>Mac:</b> click <span class="ui">Add act</span> in the sidebar. To put it straight on a stage, open the stage's <span class="ui">Overview</span> and click <span class="ui">Add Act</span>.</li>
-        <li><b>Mac, a DJ:</b> press <kbd>⌘</kbd><kbd>K</kbd> and choose <span class="ui">Add DJ</span>. Or turn on <span class="ui">This act is a DJ</span> on an act's Info page.</li>
+        <li><b>Mac, a DJ:</b> click <span class="ui">Add DJ</span> in the sidebar, under Add act. It opens on the DJ Setup page.</li>
         <li><b>iPad:</b> tap <span class="ui">Add Act</span> in the left column.</li>
       </ul>
       <h3>Rename, copy or remove</h3>
@@ -299,7 +299,8 @@
       <div class="where"><span class="tag mac">Mac</span></div>
       <p>In an event, each stage in the sidebar has pages for the whole stage:</p>
       <ul>
-        <li><b>Whole Patch, Whole Outputs, Whole IEMs, Whole Backline, Whole Plots, Whole Boxes:</b> every act on the stage, side by side.</li>
+        <li><b>Whole Patch, Whole Outputs, Whole IEMs, Whole Backline, Whole Plots, Whole Boxes:</b> every act on the stage, side by side. <i>At once</i> on Whole Backline is how many must be on the stage at the same time, including the gear on all the DJ rigs.</li>
+        <li><b>DJ Rigs:</b> every DJ rig on the stage, with who plays on it. See <a href="#djrigs">DJ sets</a>.</li>
         <li><b>House Patch and House Boxes:</b> the festival's own lines, such as MC mics and ambient mics, and its own boxes.</li>
         <li><b>Split Panels:</b> the number of panels, channels per panel, and a 2-way or 3-way split. The panel view marks what needs re-plugging between acts.</li>
         <li><b>Split Matrix:</b> a read-only table of what is on each split input, for each act.</li>
@@ -391,7 +392,7 @@
       <p>A DJ act has a <b>DJ Setup</b> page. Open the <b>DJ Night</b> example to see one.</p>
       <h3>Set up a DJ</h3>
       <ol>
-        <li>Add the DJ (Mac: <kbd>⌘</kbd><kbd>K</kbd> › <span class="ui">Add DJ</span>).</li>
+        <li>Add the DJ (Mac: <span class="ui">Add DJ</span> in the sidebar).</li>
         <li>Choose a preset: <b>4 Players and Mixer</b>, <b>2 Players and Mixer</b>, <b>2 Turntables and Mixer</b>, <b>Laptop and Controller</b> or <b>Hybrid Live</b>. The <b>Booth Layout</b> draws the gear from above.</li>
         <li>Change the <b>DJ Gear</b> list if you need to. The gear also goes on the Backline page and the hire list.</li>
         <li>Choose the monitoring: Booth Monitors, IEMs, Booth and IEMs, or Headphones Only. The Outputs and IEMs pages update for you.</li>
@@ -400,6 +401,8 @@
       <h3>A and B rigs</h3>
       <p>Under <b>Rigs On This Stage</b>, click <span class="ui">Add Rig</span> to make Rig A, Rig B and so on. With two rigs, the next DJ sets up while the last one plays. With <b>Plays On</b> set to <i>Auto Roll</i>, each DJ takes the next rig in the running order. Stagehand tells you if a rig is missing gear the DJ needs.</p>
       <p>A rig can travel to other stages (<span class="ui">Moves To</span>). Stagehand warns you if it is needed in two places at once.</p>
+      <h3 id="djrigs">See the whole night: DJ Rigs</h3>
+      <p>Each stage with DJs has a <span class="ui">DJ Rigs</span> page (Mac: under the stage in the sidebar. iPad: in the left column. iPhone: in the stage's list). It shows every rig side by side: its gear drawn from above, and the DJs who play on it, in time order, with set times. A travelling rig shows on each stage it visits. Missing gear and clashes show in orange. Tap a DJ to open their DJ Setup.</p>
       <h3>Where DJs show up</h3>
       <ul>
         <li>The running order and changeover notes say which rig to roll to.</li>
