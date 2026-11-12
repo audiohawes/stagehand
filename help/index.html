@@ -119,8 +119,11 @@
     html.inapp{scroll-padding-top:118px}
     .inapp nav.toc{position:sticky;top:0;z-index:4;background:var(--deep);padding:10px 0 6px;margin:0;border-bottom:1px solid var(--line)}
     .inapp .search{margin-bottom:.5rem}
-    .inapp nav.toc > ol{display:flex;gap:6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
-    .inapp nav.toc .kids,.inapp .toTop{display:none}
+    .inapp nav.toc{min-width:0;max-width:100%}
+    .inapp nav.toc > ol{display:flex;gap:6px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;max-width:100%}
+    /* The open topic's parts would otherwise unfold inside the row of chips and break it. The
+       "li.open" rule above is stronger than a plain class, so this one has to match it. */
+    .inapp nav.toc li.open .kids,.inapp nav.toc .kids,.inapp .toTop{display:none}
     .inapp nav.toc a{background:var(--ground);padding:.35em .7em}
   }
 </style>
@@ -222,6 +225,7 @@
         <li>On the Mac, <span class="ui">Help › Stagehand Help</span> (<kbd>⌘</kbd><kbd>?</kbd>) opens this guide in its own window. It works with no internet.</li>
         <li>Every page has a small <span class="ui">?</span> button at the top right. It opens the guide at the part for that page.</li>
         <li>Hold the mouse still on a button or a column heading for about a second. A short note says what it does and where its values come from.</li>
+        <li>On iPad and iPhone, the home screen has a <span class="ui">Help</span> card. Inside a show, iPad has <span class="ui">Help</span> at the foot of the left column and iPhone has a <span class="ui">?</span> in the top bar. Both open this guide at the part for the page you are on.</li>
       </ul>
     </section>
 
@@ -367,7 +371,17 @@
       </ul>
       <h3>Counts</h3>
       <div class="where"><span class="tag mac">Mac: full page</span><span class="tag">iPad and iPhone: totals</span></div>
-      <p>The <span class="ui">Counts</span> page totals mics, DIs, stands, wireless and cables across the show, with spares. It shows what is short, and <span class="ui">PDF…</span> exports the list.</p>
+      <p>The <span class="ui">Counts</span> page is one sheet for the whole show. Mics, DIs, stands, clips, wireless, packages and batteries are sections inside the same table, each with its own total.</p>
+      <ul>
+        <li><b>Take</b> is the number that matters: what you put on the truck. It is the patch plus the spares, and it runs straight down the page.</li>
+        <li><b>From the patch</b> is counted from every act's patch. At a festival it is the most needed at once, worked out from the running order.</li>
+        <li><b>Spares</b> are set for everything at the top, or for one item: click that row's spares and type a number.</li>
+        <li>Gear the artist brings stays in its section with an <b>ARTIST</b> tag, and has no Take.</li>
+        <li>A column for each act, and <b>Coming</b>, <b>Total</b> and <b>House</b>, show up only when they say something the Take column does not.</li>
+        <li>The tabs at the top cut the sheet down: <span class="ui">Mics &amp; DIs</span>, <span class="ui">Stands &amp; Clips</span>, <span class="ui">Wireless &amp; Packages</span>, <span class="ui">Cables &amp; Power</span> and <span class="ui">What's Coming</span>.</li>
+        <li><span class="ui">PDF…</span> saves the list. <span class="ui">Mic List per Act</span> shows which mic each act gets, line by line, with any swaps.</li>
+        <li><span class="ui">Send to the hire list</span> puts what you supply on the Backline hire list.</li>
+      </ul>
       <p>On iPad and iPhone, Counts shows the totals for mics and DIs, stands and clips, and wireless and IEM. It shows what the artists bring and what is short. You can set <span class="ui">Spares</span> there too. Cables, the list of what is coming and the PDF are on the Mac.</p>
     </section>
 
@@ -825,6 +839,18 @@
     if (row) openTopic(row);
     el.scrollIntoView({ behavior: 'instant' });   // a jump from a button: no long glide down the page
   };
+
+  // Opened at one topic by the address itself: the Windows app opens this file with "#topic" on the
+  // end, and a link to a topic on the website lands in the same place.
+  // Windows opens this file from disk, and the Windows shell can drop the "#topic" off the end of
+  // a file address. So the app also writes the topic onto the <html> tag, and that is used when
+  // there is no "#topic" to read.
+  const goToHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1)) || document.documentElement.dataset.topic || '';
+    if (id) window.guideGo(id);
+  };
+  goToHash();
+  window.addEventListener('hashchange', goToHash);
 </script>
 </body>
 </html>
